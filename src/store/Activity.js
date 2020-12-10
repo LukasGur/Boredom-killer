@@ -3,7 +3,7 @@ import axios from "axios";
 
 export default {
   state: {
-    data: "null",
+    data: null,
     usedKeys: [],
     loading: false,
     error: null
@@ -33,10 +33,8 @@ export default {
         .then(response => {
           response = response.data;
           if (state.usedKeys.includes(response.key)) {
-            console.log("ale neee");
             return dispatch("getNewActivity");
           }
-          console.log(state.data);
 
           commit("SET_LOADING", false);
           commit("PUSH_KEY", response.key);

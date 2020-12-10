@@ -9,6 +9,9 @@
         <li>
           <router-link to="/activity-generator">Get activity</router-link>
         </li>
+        <li>
+          <router-link to="/favourite-list">Favourite list</router-link>
+        </li>
       </ul>
     </div>
   </nav>
