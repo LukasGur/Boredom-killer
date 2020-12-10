@@ -9,13 +9,17 @@
         text: 'Get some activity!'
       }"
     />
-    <activity-card
-      v-else
-      v-for="activity in favouriteActivities"
-      :key="activity.key"
-      :data="activity"
-      class="card"
-    />
+    <transition-group
+      enter-active-class="animate__animated animate__zoomIn"
+      leave-active-class="animate__animated animate__bounceOutRight"
+    >
+      <activity-card
+        v-for="activity in favouriteActivities"
+        :key="activity.key"
+        :data="activity"
+        class="card"
+      />
+    </transition-group>
   </div>
 </template>
 
