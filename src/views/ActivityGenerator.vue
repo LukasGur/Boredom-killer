@@ -46,12 +46,13 @@
         leave-active-class="animate__faster animate__animated animate__fadeOut"
         mode="out-in"
       >
+        <loading-bar v-if="activityState.loading" />
         <activity-card
-          v-if="!activityState.loading && activityState.data"
+          v-else-if="!activityState.loading && activityState.data"
           :data="activityState.data"
         />
         <info-alert
-          v-if="activityState.error"
+          v-else-if="activityState.error"
           title="Ouch!"
           :text="activityState.error"
         />
@@ -69,6 +70,7 @@ import ActivityCard from "@/components/ActivityCard";
 import FormButton from "@/components/FormButton";
 import FormInput from "@/components/FormInput";
 import InfoAlert from "@/components/InfoAlert.vue";
+import LoadingBar from "@/components/LoadingBar.vue";
 
 export default {
   name: "ActivityGenerator",
@@ -76,7 +78,8 @@ export default {
     ActivityCard,
     FormButton,
     FormInput,
-    InfoAlert
+    InfoAlert,
+    LoadingBar
   },
   setup() {
     const store = useStore();
@@ -104,6 +107,10 @@ export default {
   display: grid;
   grid-template-columns: 40% auto;
   gap: 3rem;
+
+  @include md {
+    grid-template-columns: 1fr;
+  }
 }
 
 .activity-form {

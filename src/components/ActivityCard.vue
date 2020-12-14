@@ -86,12 +86,24 @@ export default {
   border-radius: 1.5rem 1.5rem 5px 1.5rem;
   position: relative;
   box-shadow: 5px 5px 5px -5px $gray;
+
+  @include sm {
+    padding: 2rem;
+  }
+
+  @include xs {
+    padding: 1.5rem;
+  }
 }
 
 .activity-card__title {
   font-size: 1.8rem;
   margin-bottom: 0.5rem;
   color: $purple-dark;
+
+  @include sm {
+    font-size: 1.4rem;
+  }
 }
 
 .activity-card__list {
@@ -102,6 +114,11 @@ export default {
   line-height: 2rem;
   font-size: 1.2rem;
   color: $purple-dark;
+
+  @include xs {
+    font-size: 1rem;
+  }
+
   a {
     color: $purple-dark;
   }

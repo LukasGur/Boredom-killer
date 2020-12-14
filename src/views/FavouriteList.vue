@@ -13,7 +13,7 @@
       }"
     />
   </transition>
-  <div class="two-columns">
+  <div class="favourite-wrapper">
     <transition-group
       enter-active-class="animate__animated animate__faster  animate__fadeIn"
       leave-active-class="animate__animated animate__faster  animate__fadeOut"
@@ -57,3 +57,16 @@ export default {
   }
 };
 </script>
+
+<style lang="scss" scoped>
+.favourite-wrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  transition: 2s;
+
+  @include md {
+    grid-template-columns: 1fr;
+  }
+}
+</style>

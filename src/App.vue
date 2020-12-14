@@ -19,22 +19,7 @@ export default {
 </script>
 
 <style lang="scss">
-select {
-  display: inline-block;
-}
-
-#app {
-  min-height: 100vh;
-}
-
-.m-0 {
-  margin: 0 !important;
-}
-
-.two-columns {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1.5rem 2rem;
-  transition: 2s;
+.container {
+  margin-bottom: 3rem;
 }
 </style>

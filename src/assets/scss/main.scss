@@ -1,17 +1,18 @@
 // Material Design Icons
 @import '../icons/scss/materialdesignicons.scss';
 
-$purple: #7c4dff;
-$purple-light: #e3d9ff;
-$purple-dark: rgb(66, 13, 212);
-$gray: rgb(202, 202, 202);
-$white: white;
+@import 'abstracts/variables';
+@import 'abstracts/mixins';
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   font-family: Avenir, Helvetica, Arial, sans-serif;
+}
+
+#app {
+  min-height: 100vh;
 }
 
 .container {
