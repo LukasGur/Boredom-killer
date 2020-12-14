@@ -11,10 +11,12 @@ const routes = [
   },
   {
     path: "/activity-generator",
+    name: "Activity generator",
     component: ActivityGenerator
   },
   {
     path: "/favourite-list",
+    name: "Your favourite list",
     component: FavouriteList
   }
 ];

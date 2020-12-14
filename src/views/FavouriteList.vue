@@ -1,23 +1,30 @@
 <template>
-  <div class="container">
+  <transition
+    class="animate__faster animate__animated"
+    enter-active-class="animate__fadeIn"
+    leave-active-class="animate__fadeOut"
+  >
     <info-alert
       v-if="!favouriteActivities.length"
       title="You haven't any favourite activities."
-      type="red"
       :routerLink="{
         to: '/activity-generator',
         text: 'Get some activity!'
       }"
     />
+  </transition>
+  <div class="two-columns">
     <transition-group
-      enter-active-class="animate__animated animate__zoomIn"
-      leave-active-class="animate__animated animate__bounceOutRight"
+      enter-active-class="animate__animated animate__faster  animate__fadeIn"
+      leave-active-class="animate__animated animate__faster  animate__fadeOut"
+      appear
+      name="animate"
     >
       <activity-card
-        v-for="activity in favouriteActivities"
-        :key="activity.key"
+        v-for="(activity, i) in favouriteActivities"
+        :key="activity.activity"
+        v-bind:data-index="i"
         :data="activity"
-        class="card"
       />
     </transition-group>
   </div>
@@ -33,7 +40,10 @@ import InfoAlert from "@/components/InfoAlert";
 
 export default {
   name: "FavouriteList",
-  components: { ActivityCard, InfoAlert },
+  components: {
+    ActivityCard,
+    InfoAlert
+  },
   setup() {
     const store = useStore();
 

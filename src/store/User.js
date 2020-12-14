@@ -1,7 +1,35 @@
 export default {
   state: {
     user: null,
-    favouriteActivities: []
+    favouriteActivities: [
+      {
+        accessibility: 0.4,
+        activity: "Go to a concert with some friends",
+        key: "4558850",
+        link: "",
+        participants: 4,
+        price: 0.6,
+        type: "social"
+      },
+      {
+        accessibility: 0,
+        activity: "Start a daily journal",
+        key: "8779876",
+        link: "",
+        participants: 1,
+        price: 0,
+        type: "relaxation"
+      },
+      {
+        accessibility: 0.1,
+        activity: "Volunteer at your local food bank",
+        key: "2055368",
+        link: "",
+        participants: 1,
+        price: 0,
+        type: "charity"
+      }
+    ]
   },
   mutations: {
     PUSH_FAVOURITE_ACTIVITY(state, activity) {
@@ -25,7 +53,7 @@ export default {
     }
   },
   getters: {
-    checkIfFacouriteAcitivity: state => key => {
+    checkIfFavouriteAcitivity: state => key => {
       if (state.favouriteActivities.find(x => x.key === key)) {
         return true;
       }

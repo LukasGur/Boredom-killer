@@ -1,7 +1,6 @@
 <template>
-  <div class="container">
-    <h1 class="color-purple">Welcome in "Boredom Killer" app</h1>
-  </div>
+  <p class="color-purple">Welcome in "Boredom Killer" app</p>
+  <test />
 </template>
 
 <script>

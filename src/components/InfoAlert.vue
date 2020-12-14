@@ -1,19 +1,24 @@
 <template>
   <div class="alert" :class="'alert--' + type">
-    <i class="alert__icon material-icons">info_outline</i>
+    <i class="alert__icon mdi mdi-information-outline"></i>
     <div>
       <h4 v-if="title" class="alert__title">{{ title }}</h4>
       <p v-if="text" class="alert__text">{{ text }}</p>
-      <router-link class="btn red" v-if="routerLink" :to="routerLink.to">
+      <form-button v-if="routerLink" :to="routerLink.to">
         {{ routerLink.text }}
-      </router-link>
+      </form-button>
     </div>
   </div>
 </template>
 
 <script>
+import FormButton from "@/components/FormButton";
+
 export default {
   name: "InfoAlert",
+  components: {
+    FormButton
+  },
   props: {
     title: {
       type: String,
@@ -34,8 +39,8 @@ export default {
 
 <style lang="scss" scope>
 .alert {
-  border: 1px solid gray;
-  background: rgb(223, 223, 223);
+  border: 1px solid $purple;
+  background: $purple-light;
   border-radius: 10px;
   padding: 2rem 3rem;
   display: flex;
@@ -44,13 +49,14 @@ export default {
 }
 
 .alert__title {
+  color: $purple;
   font-size: 1.5rem;
   margin: 1rem 0;
   font-weight: bold;
 }
 
 .alert__text {
-  color: black;
+  color: $purple;
   font-size: 1.3rem;
   margin: 0;
 }
@@ -58,6 +64,7 @@ export default {
 .alert__icon {
   font-size: 3rem;
   margin-right: 1.5rem;
+  color: $purple;
 }
 
 .alert--red {
