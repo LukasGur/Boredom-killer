@@ -10,6 +10,8 @@
     <input
       class="input__input"
       :type="type ? type : 'text'"
+      :min="min"
+      :max="max"
       :placeholder="placeholder"
       :id="id"
       :value="modelValue"
@@ -27,7 +29,9 @@ export default {
     placeholder: String,
     type: String,
     modelValue: String,
-    id: String
+    id: String,
+    min: Number,
+    max: Number
   },
   methods: {
     updateValue(value) {

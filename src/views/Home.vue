@@ -1,6 +1,5 @@
 <template>
-  <p class="color-purple">Welcome in "Boredom Killer" app</p>
-  <test />
+  <p>Welcome in "Boredom Killer" app</p>
 </template>
 
 <script>

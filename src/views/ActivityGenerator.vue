@@ -1,29 +1,37 @@
 <template>
-  <!-- <i v-if="activityState.loading" class="mdi mdi-loading mdi-spin"></i> -->
   <div class="activity-wrapper">
     <form v-on:submit.prevent="getNewActivity" class="activity-form">
       <form-input
         class="activity-form__item"
         icon="compare-horizontal"
         placeholder="Type"
+        v-model="activityOptions.type"
       />
       <form-input
         class="activity-form__item"
         icon="account-group"
         type="number"
-        placeholder="Participants 1-10"
+        placeholder="Participants 1-n"
+        v-model="activityOptions.participants"
+        :min="1"
       />
       <form-input
         class="activity-form__item"
         icon="cash-multiple"
         type="number"
         placeholder="Price 0-10"
+        v-model="activityOptions.price"
+        :min="0"
+        :max="10"
       />
       <form-input
         class="activity-form__item"
         icon="wheelchair-accessibility"
         type="number"
         placeholder="Accessibility 0-10"
+        v-model="activityOptions.accessibility"
+        :min="0"
+        :max="10"
       />
       <form-button
         :icon="activityState.loading ? 'loading mdi-spin' : 'arrow-right'"
@@ -33,22 +41,23 @@
       </form-button>
     </form>
     <div>
-      <transition
-        class="animate__faster animate__animated"
-        enter-active-class="animate__fadeIn"
-        leave-active-class="animate__fadeOut"
+      <transition-group
+        enter-active-class="animate__faster animate__animated animate__fadeIn"
+        leave-active-class="animate__faster animate__animated animate__fadeOut"
         mode="out-in"
       >
         <activity-card
           v-if="!activityState.loading && activityState.data"
           :data="activityState.data"
         />
-      </transition>
+        <info-alert
+          v-if="activityState.error"
+          title="Ouch!"
+          :text="activityState.error"
+        />
+      </transition-group>
     </div>
   </div>
-  <!-- <div v-else-if="activityState.error">
-    {{ activityState.error }}
-  </div> -->
 </template>
 
 <script>
@@ -59,19 +68,22 @@ import { useStore } from "vuex";
 import ActivityCard from "@/components/ActivityCard";
 import FormButton from "@/components/FormButton";
 import FormInput from "@/components/FormInput";
+import InfoAlert from "@/components/InfoAlert.vue";
 
 export default {
   name: "ActivityGenerator",
   components: {
     ActivityCard,
     FormButton,
-    FormInput
+    FormInput,
+    InfoAlert
   },
   setup() {
     const store = useStore();
 
-    const activityState = computed(() => store.state.activity);
-    const getNewActivity = () => store.dispatch("getNewActivity");
+    const activityState = computed(() => store.getters["activity/getState"]);
+    const activityOptions = activityState.value.options;
+    const getNewActivity = () => store.dispatch("activity/getNewActivity");
     onBeforeMount(() => {
       getNewActivity();
     });
@@ -80,7 +92,8 @@ export default {
       // methods
       getNewActivity,
       // variables
-      activityState
+      activityState,
+      activityOptions
     };
   }
 };

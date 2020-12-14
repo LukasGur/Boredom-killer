@@ -1,4 +1,5 @@
 <script>
+import { computed } from "vue";
 import { useStore } from "vuex";
 import FormButton from "@/components/FormButton";
 
@@ -17,19 +18,19 @@ export default {
     const store = useStore();
 
     const handleFavouriteClick = key => {
-      if (store.getters.checkIfFavouriteAcitivity(key)) {
-        return store.dispatch("removeFavourite", props.data.key);
+      if (store.getters["user/checkIfFavouriteAcitivity"](key)) {
+        return store.dispatch("user/removeFavourite", props.data.key);
       }
 
-      store.dispatch("newFavouriteActivity", props.data);
+      store.dispatch("user/newFavouriteActivity", props.data);
     };
 
-    const checkIfFavourite = key => {
-      if (store.getters.checkIfFavouriteAcitivity(key)) {
+    const checkIfFavourite = computed(() => {
+      if (store.getters["user/checkIfFavouriteAcitivity"](props.data.key)) {
         return "heart";
       }
       return "heart-outline";
-    };
+    });
 
     return {
       handleFavouriteClick,
@@ -73,7 +74,7 @@ export default {
       class="activity-card__linke-btn"
       v-on:click="handleFavouriteClick(data.key)"
       iconSize="24px"
-      :icon="checkIfFavourite(data.key)"
+      :icon="checkIfFavourite"
     />
   </div>
 </template>

@@ -1,5 +1,5 @@
 <template>
-  <div class="alert" :class="'alert--' + type">
+  <div class="alert" :class="type ? 'alert--' + type : ''">
     <i class="alert__icon mdi mdi-information-outline"></i>
     <div>
       <h4 v-if="title" class="alert__title">{{ title }}</h4>
@@ -37,15 +37,14 @@ export default {
 };
 </script>
 
-<style lang="scss" scope>
+<style lang="scss" scoped>
 .alert {
   border: 1px solid $purple;
   background: $purple-light;
   border-radius: 10px;
-  padding: 2rem 3rem;
+  padding: 2rem;
   display: flex;
   align-items: center;
-  margin: 2rem 0;
 }
 
 .alert__title {
@@ -63,7 +62,7 @@ export default {
 
 .alert__icon {
   font-size: 3rem;
-  margin-right: 1.5rem;
+  margin-right: 2rem;
   color: $purple;
 }
 
