@@ -1,5 +1,8 @@
 # gurecky-app
 
+## Preview
+[https://gurecky.fun/](https://gurecky.fun/)
+
 ## Project setup
 ```
 npm install
