@@ -40,7 +40,7 @@ export default {
     }
   },
   actions: {
-    getNewActivity({ dispatch, commit, state }, tryes = 0) {
+    getNewActivity({ commit, state }, tryes = 0) {
       if (tryes > 5) {
         commit("SET_LOADING", false);
         commit("SET_ERROR", "No other activity with these conditions");
