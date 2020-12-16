@@ -5,7 +5,6 @@ export default {
   namespaced: true,
   state: {
     data: null,
-    usedKeys: [],
     loading: false,
     error: null,
     options: {
@@ -29,9 +28,6 @@ export default {
   mutations: {
     SET_LOADING(state, status) {
       state.loading = status;
-    },
-    PUSH_KEY(state, key) {
-      state.usedKeys.push(key);
     },
     SET_DATA(state, data) {
       state.data = data;
@@ -83,17 +79,12 @@ export default {
         .then(response => {
           response = response.data;
 
-          if (state.usedKeys.includes(response.key)) {
-            return dispatch("getNewActivity", ++tryes);
-          }
-
           commit("SET_LOADING", false);
 
           if (response.error) {
             return commit("SET_ERROR", response.error || "Error");
           }
 
-          commit("PUSH_KEY", response.key);
           commit("SET_DATA", response);
         })
         .catch(err => {
