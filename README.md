@@ -1,4 +1,4 @@
-# gurecky-app
+# Boredom killer
 
 ## Preview
 [https://gurecky.fun/](https://gurecky.fun/)
