@@ -1,5 +1,6 @@
 // libraries
 import { createStore } from "vuex";
+import createPersistedState from "vuex-persistedstate";
 
 // modules
 import activity from "./Activity.js";
@@ -12,5 +13,6 @@ export default createStore({
   modules: {
     activity,
     user
-  }
+  },
+  plugins: [createPersistedState()]
 });

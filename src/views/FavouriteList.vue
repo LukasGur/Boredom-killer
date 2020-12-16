@@ -1,8 +1,8 @@
 <template>
-  <transition
-    class="animate__faster animate__animated"
-    enter-active-class="animate__fadeIn"
-    leave-active-class="animate__fadeOut"
+  <transition-group
+    enter-active-class="animate__faster animate__animated animate__fadeIn"
+    leave-active-class="animate__faster animate__animated animate__fadeOut"
+    mode="out-in"
   >
     <info-alert
       v-if="!favouriteActivities.length"
@@ -11,23 +11,16 @@
         to: '/activity-generator',
         text: 'Get some activity!'
       }"
+      :key="1"
     />
-  </transition>
-  <div class="favourite-wrapper">
-    <transition-group
-      enter-active-class="animate__animated animate__faster  animate__fadeIn"
-      leave-active-class="animate__animated animate__faster  animate__fadeOut"
-      appear
-      name="animate"
-    >
+    <div :key="2" class="favourite-wrapper">
       <activity-card
-        v-for="(activity, i) in favouriteActivities"
-        :key="activity.activity"
-        v-bind:data-index="i"
+        v-for="activity in favouriteActivities"
+        :key="activity.key"
         :data="activity"
       />
-    </transition-group>
-  </div>
+    </div>
+  </transition-group>
 </template>
 
 <script>
@@ -47,9 +40,9 @@ export default {
   setup() {
     const store = useStore();
 
-    const favouriteActivities = computed(() => {
-      return store.state.user.favouriteActivities;
-    });
+    const favouriteActivities = computed(
+      () => store.getters["user/getFavouriteActivities"]
+    );
 
     return {
       favouriteActivities
@@ -63,7 +56,6 @@ export default {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 2rem;
-  transition: 2s;
 
   @include md {
     grid-template-columns: 1fr;

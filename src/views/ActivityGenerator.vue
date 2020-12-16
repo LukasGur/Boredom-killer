@@ -41,22 +41,24 @@
       </form-button>
     </form>
     <div>
-      <transition-group
+      <transition
         enter-active-class="animate__faster animate__animated animate__fadeIn"
         leave-active-class="animate__faster animate__animated animate__fadeOut"
         mode="out-in"
       >
-        <loading-bar v-if="activityState.loading" />
+        <loading-bar key="1" v-if="activityState.loading" />
         <activity-card
           v-else-if="!activityState.loading && activityState.data"
           :data="activityState.data"
+          key="2"
         />
         <info-alert
           v-else-if="activityState.error"
           title="Ouch!"
           :text="activityState.error"
+          key="3"
         />
-      </transition-group>
+      </transition>
     </div>
   </div>
 </template>
